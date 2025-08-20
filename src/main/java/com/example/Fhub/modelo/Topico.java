@@ -24,13 +24,13 @@ public class Topico {
     @Column(length = 2000)
     private String mensagem;
 
-    @NotBlank
-    private String autor;
+    @ManyToOne // Relação com a entidade Usuario
+    private Usuario autor;
 
     @NotBlank
     private String curso;
 
-    private LocalDateTime dataCriacao = LocalDateTime.now();
+    private LocalDateTime dataCriacao;
 
-    private String status; // Ex: "ABERTO", "FECHADO"
+    private String status;
 }

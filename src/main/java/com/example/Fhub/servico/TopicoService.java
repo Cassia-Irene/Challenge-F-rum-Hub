@@ -39,12 +39,14 @@ public class TopicoService {
 
     // Atualizar tópico
     public Topico atualizarTopico(Long id, Topico topicoAtualizado) {
-        Topico topico = topicoRepository.findById(id).orElseThrow();
+        Topico topico = topicoRepository.findById(id).orElse(null);
+        if (topico == null) {
+            return null;
+        }
         topico.setTitulo(topicoAtualizado.getTitulo());
         topico.setMensagem(topicoAtualizado.getMensagem());
         topico.setCurso(topicoAtualizado.getCurso());
         topico.setStatus(topicoAtualizado.getStatus());
-        topico.setDataCriacao(LocalDateTime.now());
         return topicoRepository.save(topico);
     }
 
